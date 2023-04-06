@@ -34,15 +34,17 @@
 void setup() {
   Serial.begin(115200);
 
-  // Connect to WiFi
+  // Connect to WiFi using the provided SSID and password
   WiFi.begin(ssid, password);
   while (WiFi.status() != WL_CONNECTED) {
+    // Wait for connection and print a message every second
     delay(1000);
     Serial.println("Connecting to WiFi...");
   }
   Serial.println("Connected to WiFi");
 
-  // Help rule out signal and power issues
+  // Print WiFi received signal strength and power supply voltage
+  // This could save time with an issue that is difficult to troubleshoot
   long rssi = WiFi.RSSI();
   Serial.print("RSSI:");
   Serial.println(rssi);
@@ -68,14 +70,21 @@ void loop() {
   }
 }
 
+// Function to send temperature data to the server
 void sendTemperature(float tempC) {
   if (WiFi.status() == WL_CONNECTED) {
     Serial.println("Sending temperature");
     HTTPClient http;
+
+    // Begin connection to the server
     http.begin(wifiClient, serverName, serverPort, String("/api/temperature"));
     http.addHeader("Content-Type", "application/x-www-form-urlencoded");
+
+    // Create HTTP request data and send POST request
     String httpRequestData = "temperature=" + String(tempC);
     int httpResponseCode = http.POST(httpRequestData);
+
+    // Print response code
     if (httpResponseCode > 0) {
       Serial.print("HTTP Response code: ");
       Serial.println(httpResponseCode);
@@ -89,12 +98,19 @@ void sendTemperature(float tempC) {
   }
 }
 
+// Function to get a message from the server
 void getMessage() {
   if (WiFi.status() == WL_CONNECTED) {
     Serial.println("Getting message");
     HTTPClient http;
+
+    // Begin connection to the server
     http.begin(wifiClient, serverName, serverPort, String("/api/message"));
+
+    // Send GET request and store response code
     int httpResponseCode = http.GET();
+
+    // If response is positive, print the requested message from the server
     if (httpResponseCode > 0) {
       String payload = http.getString();
       Serial.println("Message from server: " + payload);
