@@ -69,4 +69,10 @@ const int   serverPort =        SECRET_SERVER_PORT;
 unsigned long lastTempCheck =   0;
 unsigned long lastGetRequest =  0;
 
+/****************************************************************************
+* Initilizations
+****************************************************************************/
+// Set ADC mode to read Vcc
+ADC_MODE(ADC_VCC);
+
 #endif /* MAIN_H */
