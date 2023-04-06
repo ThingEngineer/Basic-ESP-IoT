@@ -1,6 +1,6 @@
 /*
  * main.h
- * 
+ *
  *      ____  _____ _     _             _____            _                      
  *     / / / |_   _| |   (_)           |  ___|          (_)                     
  *    / / /    | | | |__  _ _ __   __ _| |__ _ __   __ _ _ _ __   ___  ___ _ __ 
@@ -41,6 +41,13 @@ void setup() {
     Serial.println("Connecting to WiFi...");
   }
   Serial.println("Connected to WiFi");
+
+  // Help rule out signal and power issues
+  long rssi = WiFi.RSSI();
+  Serial.print("RSSI:");
+  Serial.println(rssi);
+  Serial.print("Vcc:");
+  Serial.println(ESP.getVcc()/1000.00);
 }
 
 /**
@@ -63,6 +70,7 @@ void loop() {
 
 void sendTemperature(float tempC) {
   if (WiFi.status() == WL_CONNECTED) {
+    Serial.println("Sending temperature");
     HTTPClient http;
     http.begin(wifiClient, serverName, serverPort, String("/api/temperature"));
     http.addHeader("Content-Type", "application/x-www-form-urlencoded");
@@ -83,6 +91,7 @@ void sendTemperature(float tempC) {
 
 void getMessage() {
   if (WiFi.status() == WL_CONNECTED) {
+    Serial.println("Getting message");
     HTTPClient http;
     http.begin(wifiClient, serverName, serverPort, String("/api/message"));
     int httpResponseCode = http.GET();
