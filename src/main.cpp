@@ -34,6 +34,7 @@
 void setup() {
   Serial.begin(115200);
 
+  // Connect to WiFi
   WiFi.begin(ssid, password);
   while (WiFi.status() != WL_CONNECTED) {
     delay(1000);
@@ -46,12 +47,14 @@ void setup() {
  * Main program loop
  */
 void loop() {
+  // Send temperature data to server every 60 seconds
   if ((millis() - lastTempCheck) > 60000) {
     lastTempCheck = millis();
     float tempF = random(60.00,69.99);
     sendTemperature(tempF);
   }
 
+  // Get message from server every 30 seconds
   if ((millis() - lastGetRequest) > 30000) {
     lastGetRequest = millis();
     getMessage();
