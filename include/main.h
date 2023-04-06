@@ -1,8 +1,17 @@
 /*
  * main.h
  * 
+ *      ____  _____ _     _             _____            _                      
+ *     / / / |_   _| |   (_)           |  ___|          (_)                     
+ *    / / /    | | | |__  _ _ __   __ _| |__ _ __   __ _ _ _ __   ___  ___ _ __ 
+ *   / / /     | | | '_ \| | '_ \ / _` |  __| '_ \ / _` | | '_ \ / _ \/ _ \ '__|
+ *  / / /      | | | | | | | | | | (_| | |__| | | | (_| | | | | |  __/  __/ |   
+ * /_/_/       \_/ |_| |_|_|_| |_|\__, \____/_| |_|\__, |_|_| |_|\___|\___|_|   
+ *                                 __/ |            __/ |                       
+ *                                |___/            |___/                        
+ * 
  * This file is part of the 'Basic ESP IoT' distribution (https://github.com/ThingEngineer/Basic-ESP-IoT).
- * Copyright (c) 2023 Josh Campbell.
+ * Copyright (c) 2023 Josh Campbell (https://thing.engineer)
  * 
  * This program is free software: you can redistribute it and/or modify  
  * it under the terms of the GNU General Public License as published by  
