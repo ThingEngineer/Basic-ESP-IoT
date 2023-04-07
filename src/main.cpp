@@ -10,7 +10,7 @@
  *                                   __/ |            __/ |                       
  *                                  |___/            |___/ 
  *
- * This file is part of the 'Basic ESP IoT' distribution (https://github.com/ThingEngineer/Basic-ESP-IoT).
+ * This file is part of the 'Basic Microcontroller API Consumption' distribution (https://github.com/ThingEngineer/Basic-ESP-IoT).
  * Copyright (c) 2023 Josh Campbell (https://thing.engineer)
  * 
  * This program is free software: you can redistribute it and/or modify  
